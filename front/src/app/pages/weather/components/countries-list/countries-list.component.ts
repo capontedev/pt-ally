@@ -3,7 +3,7 @@ import { WeatherService } from '../../../../services/weather.service';
 
 interface Country {
   code: string;
-  codeWheater: string;
+  codeWeather: string;
   name: string;
   flag: string;
 }
@@ -20,19 +20,19 @@ export class CountriesListComponent implements AfterViewInit {
   countries: Country[] = [
     {
       code: 'MX',
-      codeWheater: 'Mexico',
+      codeWeather: 'Mexico',
       name: 'México',
       flag: 'https://flagcdn.com/w40/mx.png'
     },
     {
       code: 'VE',
-      codeWheater: 'Venezuela',
+      codeWeather: 'Venezuela',
       name: 'Venezuela',
       flag: 'https://flagcdn.com/w40/ve.png'
     },
     {
       code: 'PE',
-      codeWheater: 'Peru',
+      codeWeather: 'Peru',
       name: 'Perú',
       flag: 'https://flagcdn.com/w40/pe.png'
     }
@@ -48,6 +48,6 @@ export class CountriesListComponent implements AfterViewInit {
   
   onSelectCountry(country: Country): void {
     this.selectedCountry = country;
-    this.weatherService.searchWeather(country.codeWheater)
+    this.weatherService.searchWeather(country.codeWeather)
   }
 }

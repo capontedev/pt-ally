@@ -3,7 +3,6 @@
     <nav class="sidebar-nav">
         @for (navItem of navItems; track navItem.id) {
             <a
-                [routerLink]="navItem.id === 'logout' ? '/login' : ['/', navItem.id]"
                 [class.active]="activeItem === navItem.id"
                 (click)="handleNavClick(navItem)"
                 class="nav-item">

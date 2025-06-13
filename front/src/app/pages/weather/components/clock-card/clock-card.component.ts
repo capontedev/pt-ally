@@ -11,7 +11,7 @@ import { WeatherService } from '../../../../services/weather.service';
 })
 export class ClockCardComponent implements OnDestroy {
   private subscription: Subscription;
-  timezone!: Timezone;
+  timezone?: Timezone | undefined;
 
   constructor(private weatherService: WeatherService) {
     this.subscription = this.weatherService.timezone$.subscribe({

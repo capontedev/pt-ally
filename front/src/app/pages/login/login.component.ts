@@ -33,7 +33,7 @@ export class LoginComponent {
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password).subscribe({
         next: () => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard/weather']);
         },
         error: (error) => {
           this.isSubmitting = false;

@@ -16,7 +16,7 @@ interface Weather {
 })
 export class WeatherCardComponent implements OnDestroy {
   private subscription: Subscription;
-  weather!: Weather;
+  weather?: Weather | undefined;
 
   constructor(private weatherService: WeatherService) {
     this.subscription = this.weatherService.weather$.subscribe({

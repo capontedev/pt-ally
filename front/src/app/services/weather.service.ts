@@ -9,8 +9,8 @@ import { Timezone } from '../interfaces/timezone.interfaces';
   providedIn: 'root'
 })
 export class WeatherService {
-  private apiKey = environment.apiWheater;
-  private baseUrl = environment.baseUrlWheater;
+  private apiKey = environment.apiWeather;
+  private baseUrl = environment.baseUrlWeather;
   
   private searchSubject = new Subject<string>();
   public weather$: Observable<WeatherResponse>;

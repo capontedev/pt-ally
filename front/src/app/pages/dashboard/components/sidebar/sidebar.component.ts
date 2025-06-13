@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
+import { Router } from '@angular/router';
 
 interface NavItem {
   id: string;
@@ -16,18 +17,22 @@ interface NavItem {
 export class SidebarComponent {
   activeItem: string = 'weather';
   navItems: NavItem[] = [
-    { id: "weather", label: "Weather", icon: "🌤️" },
-    { id: "users", label: "Usuarios", icon: "⬆️" },
+    { id: "dashboard/weather", label: "Weather", icon: "🌤️" },
+    { id: "dashboard/users", label: "Usuarios", icon: "⬆️" },
     { id: "logout", label: "Salir", icon: "🚪" },
   ]
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   handleNavClick(navItem: NavItem): void {
     if (navItem.id === 'logout') {
       this.authService.logout();
     } else {
       this.activeItem = navItem.id;
+      this.router.navigate([navItem.id])
     }
   }
 }

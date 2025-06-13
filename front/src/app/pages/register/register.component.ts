@@ -63,7 +63,7 @@ export class RegisterComponent {
           this.success = true;
           this.isSubmitting = false;
           setTimeout(() => {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/dashboard/weather']);
           }, 2000);
         },
         error: (error) => {

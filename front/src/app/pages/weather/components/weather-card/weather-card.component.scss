@@ -1,9 +1,8 @@
 @import './../../host';
-@import './../../dashboard';
+@import './../../weather';
 
-.weather-card {
+.weather-card-content {
     display: flex;
-    align-items: center;
 }
 
 .weather-icon {

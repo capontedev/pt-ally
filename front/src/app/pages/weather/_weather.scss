@@ -1,18 +1,16 @@
-
-
-.dashboard-card {
+.weather-card {
     background-color: var(--card-bg);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     overflow: hidden;
 }
 
-.dashboard-card-header {
+.weather-card-header {
     padding: 12px 15px;
     border-bottom: 1px solid var(--border-color);
 }
 
-.dashboard-card-title {
+.weather-card-title {
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--text-gray);
@@ -21,6 +19,6 @@
     letter-spacing: 0.5px;
 }
 
-.dashboard-card-content {
+.weather-card-content {
     padding: 15px;
 }
