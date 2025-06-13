@@ -1,14 +1,15 @@
 <div class="sidebar">
     <div class="sidebar-logo">AppDashboard</div>
     <nav class="sidebar-nav">
-        <!--{navItems.map((item) => (
-        <a key={item.id} href={`#${item.id}`} class={`nav-item ${activeItem===item.id ? "active" : "" }`} onClick={()=>
-            setActiveItem(item.id)}
-            >
-            <span class="nav-icon">{item.icon}</span>
-            {item.label}
-        </a>-->
-        <a href="">test</a>
-        <!--))}-->
+        @for (navItem of navItems; track navItem.id) {
+            <a
+                [routerLink]="navItem.id === 'logout' ? '/login' : ['/', navItem.id]"
+                [class.active]="activeItem === navItem.id"
+                (click)="handleNavClick(navItem)"
+                class="nav-item">
+                <span class="nav-icon">{{navItem.icon}}</span>
+                {{navItem.label}}
+            </a>
+        }
     </nav>
 </div>
