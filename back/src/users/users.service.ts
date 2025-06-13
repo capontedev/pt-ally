@@ -5,6 +5,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { PaginationQueryDto } from './dto/pagination-query.dto';
 import { User } from './entities/user.entity';
+import { plainToInstance } from 'class-transformer';
 
 @Injectable()
 export class UsersService {
@@ -45,7 +46,9 @@ export class UsersService {
     user.last_login_at = new Date();
     await this.usersRepository.save(user);
 
-    return user;
+    return plainToInstance(User, user, { 
+      excludeExtraneousValues: true 
+    });
   }
 
   async findAll(paginationQuery: PaginationQueryDto) {
@@ -60,8 +63,14 @@ export class UsersService {
       }
     });
 
+    const transformedUsers = users.map(user => 
+      plainToInstance(User, user, { 
+        excludeExtraneousValues: true 
+      })
+    );
+
     return {
-      data: users,
+      data: transformedUsers,
       meta: {
         total,
         page,

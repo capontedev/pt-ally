@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-
+  alertTodo() {
+    alert('No desarrollado')
+  }
 }

@@ -16,10 +16,12 @@ export class ClockCardComponent implements OnDestroy {
   constructor(private weatherService: WeatherService) {
     this.subscription = this.weatherService.timezone$.subscribe({
       next: (data) => {
-        this.timezone = {
-          tzId: data.tzId,
-          name: data.name,
-          localtime: data.localtime,
+        if (data) {
+          this.timezone = {
+            tzId: data.tzId,
+            name: data.name,
+            localtime: data.localtime,
+          }
         }
       }
     });

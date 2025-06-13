@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 interface NavItem {
   id: string;
@@ -15,24 +16,32 @@ interface NavItem {
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-  activeItem: string = 'weather';
   navItems: NavItem[] = [
-    { id: "dashboard/weather", label: "Weather", icon: "🌤️" },
-    { id: "dashboard/users", label: "Usuarios", icon: "⬆️" },
-    { id: "logout", label: "Salir", icon: "🚪" },
+    { id: "weather", label: "Weather", icon: "🌤️" },
+    { id: "users", label: "Usuarios", icon: "⬆️" },
+    { id: "login", label: "Salir", icon: "🚪" },
   ]
+  activeItem: string = this.navItems[0].id;
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-  ) {}
+    private router: Router
+  ) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      const urlSegments = event.url.split('/');
+      this.activeItem = urlSegments[urlSegments.length - 1];
+    });
+  }
 
   handleNavClick(navItem: NavItem): void {
-    if (navItem.id === 'logout') {
+    if (navItem.id === 'login') {
       this.authService.logout();
-    } else {
-      this.activeItem = navItem.id;
       this.router.navigate([navItem.id])
+    } else {
+      this.router.navigate(['/dashboard', navItem.id])
     }
+    this.activeItem = navItem.id
   }
 }

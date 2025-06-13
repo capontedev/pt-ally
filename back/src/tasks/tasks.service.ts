@@ -10,12 +10,14 @@ export class TasksService {
     private tasksRepository: Repository<Task>,
   ) {}
 
-  findAll(): Promise<Task[]> {
-    return this.tasksRepository.find({
-      relations: ['user'],
-      order: {
-        create_at: 'DESC'
-      }
-    });
+  findAll(userId?: number): Promise<Task[]> {
+    const queryBuilder = this.tasksRepository.createQueryBuilder('task')
+      .leftJoinAndSelect('task.user', 'user');
+
+    queryBuilder.where('task.user_id = :userId', { userId });
+
+    return queryBuilder
+      .orderBy('task.create_at', 'DESC')
+      .getMany();
   }
 }
