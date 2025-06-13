@@ -4,11 +4,8 @@
     </div>
     <div class="dashboard-card-content">
       <div class="clock-card">
-        <!--<div class="clock-time">{formatTime(currentTime, timezone)}</div>
-        <div class="clock-timezone">{timezone}</div>-->
-
-        <div class="clock-time">asasasa</div>
-        <div class="clock-timezone">asasas</div>
+        <div class="clock-time">{{timezone?.localtime | date:'dd/MM/yyyy hh:mm:ss a' }}</div>
+        <div class="clock-timezone">{{timezone?.name}}</div>
       </div>
     </div>
   </div>

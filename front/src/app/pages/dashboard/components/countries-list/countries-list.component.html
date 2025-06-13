@@ -4,17 +4,16 @@
     </div>
     <div class="dashboard-card-content">
       <ul class="countries-list">
-        <!--{countries.map((country) => (
+        @for (country of countries; track country.code) {
           <li
-            key={country.code}
             class="country-item"
-            onClick={() => onSelectCountry(country)}
-            style={{ fontWeight: country.code === selectedCountry.code ? "bold" : "normal" }}
+            (click)="onSelectCountry(country)"
+            [style.font-weight]="country.code === selectedCountry?.code ? 'bold' : 'normal'"
           >
-            <img src={country.flag || "/placeholder.svg"} alt={country.name} class="country-flag" />
-            <span class="country-name">{country.name}</span>
+            <img [src]="country.flag" [alt]="country.name" class="country-flag" />
+            <span class="country-name">{{country.name}}</span>
           </li>
-        ))}-->
+        }
       </ul>
     </div>
   </div>

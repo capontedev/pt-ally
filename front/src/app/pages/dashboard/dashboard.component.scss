@@ -4,12 +4,25 @@
     display: flex;
     min-height: 100vh;
     background-color: #f5f5f5;
+    position: relative;
+    z-index: 1
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20vh;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    z-index: 0;
 }
 
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
     padding: 20px;
+    z-index: 1;
 }
 
 .dashboard-grid {

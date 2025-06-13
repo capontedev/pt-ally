@@ -4,14 +4,11 @@
     </div>
     <div class="dashboard-card-content">
         <ul class="timezone-list">
-            <!--{timezones.map((timezone) => (
-            <li key={timezone} class="timezone-item" onClick={()=> onSelectTimezone(timezone)}>
-                {timezone}
-            </li>
-            ))}-->
-            <li key={timezone} class="timezone-item">
-                asasasas
-            </li>
+            @for (timezone of timezoneList; track timezone.tzId) {
+                <li key={timezone} class="timezone-item" (click)="handleTimezone(timezone)">
+                    {{ timezone.name }}
+                </li>
+            }
         </ul>
     </div>
 </div>

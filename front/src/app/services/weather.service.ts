@@ -1,0 +1,60 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { combineLatest, map, Observable, Subject, switchMap } from 'rxjs';
+import { TimezoneLocation, WeatherCurrent, WeatherLocation, WeatherResponse } from '../interfaces/weather.interface';
+import { environment } from '../../environments/environment';
+import { Timezone } from '../interfaces/timezone.interfaces';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class WeatherService {
+  private apiKey = environment.apiWheater;
+  private baseUrl = environment.baseUrlWheater;
+  
+  private searchSubject = new Subject<string>();
+  public weather$: Observable<WeatherResponse>;
+  private timezoneSubject = new Subject<Timezone>();
+
+  get timezone$() {
+    return this.timezoneSubject.asObservable()
+  }
+
+  constructor(private http: HttpClient) {
+    this.weather$ = this.searchSubject.pipe(
+        switchMap(location => combineLatest([
+            this.getCurrentWeather(location), 
+            this.getCurrentTimezone(location)])),
+        map(([weather, { location }]) => ({
+            ...weather,
+            timezone: location
+        }))    
+    );
+  }
+
+  searchWeather(location: string): void {
+    this.searchSubject.next(location);
+  }
+
+  setTimezone(timezone: Timezone): void {
+    this.timezoneSubject.next(timezone);
+  }
+
+  private getCurrentWeather(location: string): Observable<{location: WeatherLocation, current: WeatherCurrent}> {
+    return this.http.get<{location: WeatherLocation, current: WeatherCurrent}>(`${this.baseUrl}/current.json`, {
+      params: {
+        key: this.apiKey,
+        q: location
+      }
+    });
+  }
+
+  private getCurrentTimezone(location: string): Observable<TimezoneLocation> {
+    return this.http.get<TimezoneLocation>(`${this.baseUrl}/timezone.json`, {
+      params: {
+        key: this.apiKey,
+        q: location
+      }
+    });
+  }
+}

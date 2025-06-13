@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
+import { WeatherService } from '../../../../services/weather.service';
+
+interface Country {
+  code: string;
+  codeWheater: string;
+  name: string;
+  flag: string;
+}
 
 @Component({
   selector: 'app-countries-list',
@@ -6,6 +14,40 @@ import { Component } from '@angular/core';
   templateUrl: './countries-list.component.html',
   styleUrl: './countries-list.component.scss'
 })
-export class CountriesListComponent {
+export class CountriesListComponent implements AfterViewInit {
+  selectedCountry: Country | null = null;
 
+  countries: Country[] = [
+    {
+      code: 'MX',
+      codeWheater: 'Mexico',
+      name: 'México',
+      flag: 'https://flagcdn.com/w40/mx.png'
+    },
+    {
+      code: 'VE',
+      codeWheater: 'Venezuela',
+      name: 'Venezuela',
+      flag: 'https://flagcdn.com/w40/ve.png'
+    },
+    {
+      code: 'PE',
+      codeWheater: 'Peru',
+      name: 'Perú',
+      flag: 'https://flagcdn.com/w40/pe.png'
+    }
+  ];
+
+  constructor(private weatherService: WeatherService) {}
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.onSelectCountry(this.countries[0]);
+    });
+  }
+  
+  onSelectCountry(country: Country): void {
+    this.selectedCountry = country;
+    this.weatherService.searchWeather(country.codeWheater)
+  }
 }

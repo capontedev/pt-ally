@@ -4,14 +4,12 @@
     </div>
     <div class="dashboard-card-content">
         <ul class="tasks-list">
-            <span class="task-dot"></span>
-            <span class="task-title">asasasas</span>
-            <!--{tasks.map((task) => (
-            <li key={task.id} class="task-item">
-                <span class="task-dot"></span>
-                <span class="task-title">{task.title}</span>
-            </li>
-            ))}-->
+            @for (task of taskList; track task.id) {
+                <li>
+                    <span class="task-dot"></span>
+                    <span class="task-title">{{ task.description }}</span>
+                </li>
+            }
         </ul>
     </div>
 </div>

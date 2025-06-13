@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Timezone } from '../../../../interfaces/timezone.interfaces';
+import { WeatherService } from '../../../../services/weather.service';
 
 @Component({
   selector: 'app-clock-card',
@@ -6,6 +9,23 @@ import { Component } from '@angular/core';
   templateUrl: './clock-card.component.html',
   styleUrl: './clock-card.component.scss'
 })
-export class ClockCardComponent {
+export class ClockCardComponent implements OnDestroy {
+  private subscription: Subscription;
+  timezone!: Timezone;
 
+  constructor(private weatherService: WeatherService) {
+    this.subscription = this.weatherService.timezone$.subscribe({
+      next: (data) => {
+        this.timezone = {
+          tzId: data.tzId,
+          name: data.name,
+          localtime: data.localtime,
+        }
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
