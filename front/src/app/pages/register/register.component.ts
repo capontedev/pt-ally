@@ -63,7 +63,7 @@ export class RegisterComponent {
           this.success = true;
           this.isSubmitting = false;
           setTimeout(() => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/dashboard']);
           }, 2000);
         },
         error: (error) => {
