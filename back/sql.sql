@@ -1,0 +1,21 @@
+CREATE DATABASE ally;
+USE ally;
+
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(125) NOT NULL,
+    email VARCHAR(125) NOT NULL,    
+    password VARCHAR(50) NOT NULL,
+    create_at TIMESTAMP DEFAULT CURRENT_TIallytaskMESTAMP,
+    last_login_at TIMESTAMP NULL
+);
+
+CREATE TABLE task (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    description TEXT NOT NULL,
+    done BOOLEAN DEFAULT FALSE,
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    done_at TIMESTAMP NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+);
