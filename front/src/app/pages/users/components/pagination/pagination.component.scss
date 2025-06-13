@@ -1,0 +1,41 @@
+@import './../../host';
+
+.users-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.pagination-button {
+    padding: 5px 10px;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+.pagination-button:hover:not(:disabled) {
+    background-color: var(--hover-color);
+}
+
+.pagination-button.active {
+    background-color: var(--active-color);
+    color: var(--active-text);
+    border-color: var(--active-color);
+}
+
+.pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

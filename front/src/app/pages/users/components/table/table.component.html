@@ -1,0 +1,35 @@
+<div class="users-table-container">
+    <table class="users-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Fecha Registro</th>
+                <th>Último login</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan=4 class="no-records">
+                    No se encontraron registros
+                </td>
+            </tr>
+            <!--{users.length === 0 ? (
+            <tr>
+                <td colSpan={4} class="no-records">
+                    No se encontraron registros
+                </td>
+            </tr>
+            ) : (
+            users.map((user) => (
+            <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.registrationDate}</td>
+                <td>{user.lastLogin}</td>
+            </tr>
+            ))
+        )}-->
+        </tbody>
+    </table>
+</div>
