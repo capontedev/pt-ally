@@ -6,7 +6,7 @@ import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
@@ -20,15 +20,10 @@ export class UsersComponent implements OnInit {
   private searchSubject = new Subject<string>();
 
   constructor(private userService: UserService) {
-    this.searchSubject
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged()
-      )
-      .subscribe(searchTerm => {
-        this.currentPage = 1;
-        this.loadUsers();
-      });
+    this.searchSubject.pipe(debounceTime(300), distinctUntilChanged()).subscribe(searchTerm => {
+      this.currentPage = 1;
+      this.loadUsers();
+    });
   }
 
   ngOnInit() {
@@ -37,16 +32,16 @@ export class UsersComponent implements OnInit {
 
   loadUsers() {
     this.userService.getUsers(this.currentPage, this.recordsPerPage, this.searchTerm).subscribe({
-      next: (response) => {
+      next: response => {
         this.users = response.data;
         this.totalPages = response.meta.totalPages;
         this.totalRecords = response.meta.total;
         this.startRecord = (this.currentPage - 1) * this.recordsPerPage + 1;
         this.endRecord = Math.min(this.currentPage * this.recordsPerPage, this.totalRecords);
       },
-      error: (error) => {
+      error: error => {
         console.error('Error al cargar usuarios:', error);
-      }
+      },
     });
   }
 

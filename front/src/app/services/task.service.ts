@@ -5,12 +5,12 @@ import { environment } from '../../environments/environment';
 import { Task } from '../interfaces/task.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TaskService {
   private apiUrl = `${environment.apiUrl}/tasks`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getTasks(userId?: number): Observable<Task[]> {
     let url = this.apiUrl;
@@ -19,4 +19,4 @@ export class TaskService {
     }
     return this.http.get<Task[]>(url);
   }
-} 
+}

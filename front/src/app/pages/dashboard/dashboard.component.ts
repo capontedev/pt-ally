@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-dashboard',
   standalone: false,
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
   private subscription: Subscription;
@@ -14,8 +14,8 @@ export class DashboardComponent {
   constructor(private weatherService: WeatherService) {
     this.subscription = this.weatherService.weather$.subscribe({
       error: () => {
-        alert('Error al obtener el clima')
-      }
+        alert('Error al obtener el clima');
+      },
     });
   }
 

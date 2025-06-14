@@ -4,19 +4,19 @@ import { Observable, of } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard {
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   canActivate(): Observable<boolean> {
     if (this.authService.isLoggedIn()) {
       return of(true);
     }
-    
+
     this.router.navigate(['/login']);
     return of(false);
   }

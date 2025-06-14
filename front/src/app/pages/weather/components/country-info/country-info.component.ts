@@ -14,23 +14,23 @@ interface CountryInfo {
   selector: 'app-country-info',
   standalone: false,
   templateUrl: './country-info.component.html',
-  styleUrl: './country-info.component.scss'
+  styleUrl: './country-info.component.scss',
 })
 export class CountryInfoComponent implements OnDestroy {
   private subscription: Subscription;
-  countryInfo?: CountryInfo 
+  countryInfo?: CountryInfo;
 
   constructor(private weatherService: WeatherService) {
     this.subscription = this.weatherService.weather$.subscribe({
-      next: (data) => {
+      next: data => {
         this.countryInfo = {
           name: data?.location?.country,
           capital: data?.location?.name,
           region: data?.location?.region,
           latitude: data?.location?.lat,
-          longitude: data?.location?.lon
+          longitude: data?.location?.lon,
         };
-      }
+      },
     });
   }
 

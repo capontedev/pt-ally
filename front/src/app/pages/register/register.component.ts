@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
@@ -7,7 +14,7 @@ import { UserService } from '../../services/user.service';
   selector: 'app-register',
   standalone: false,
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
   registerForm: FormGroup;
@@ -18,16 +25,22 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
   ) {
-    this.registerForm = this.fb.group({
-      full_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(125)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(125)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(125)]]
-    }, {
-      validators: this.passwordMatchValidator('password', 'confirmPassword')
-    });
+    this.registerForm = this.fb.group(
+      {
+        full_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(125)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(125)]],
+        confirmPassword: [
+          '',
+          [Validators.required, Validators.minLength(6), Validators.maxLength(125)],
+        ],
+      },
+      {
+        validators: this.passwordMatchValidator('password', 'confirmPassword'),
+      },
+    );
   }
 
   passwordMatchValidator(pass1: string, pass2: string): ValidatorFn {
@@ -55,7 +68,7 @@ export class RegisterComponent {
       const userData = {
         full_name: this.registerForm.get('full_name')?.value,
         email: this.registerForm.get('email')?.value,
-        password: this.registerForm.get('password')?.value
+        password: this.registerForm.get('password')?.value,
       };
 
       this.userService.createUser(userData).subscribe({
@@ -66,14 +79,14 @@ export class RegisterComponent {
             this.router.navigate(['/dashboard/weather']);
           }, 2000);
         },
-        error: (error) => {
+        error: error => {
           this.isSubmitting = false;
           if (error.error?.message) {
             this.errors.general = error.error.message;
           } else {
             this.errors.general = 'Error al registrar usuario';
           }
-        }
+        },
       });
     } else {
       this.validateForm();

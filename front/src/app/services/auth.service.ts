@@ -5,20 +5,19 @@ import { environment } from '../../environments/environment';
 import { User } from '../interfaces/user.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/users`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/login`, { email, password })
-      .pipe(
-        tap(user => {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        })
-      );
+    return this.http.post<User>(`${this.apiUrl}/login`, { email, password }).pipe(
+      tap(user => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }),
+    );
   }
 
   logout(): void {
@@ -36,4 +35,4 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!this.getCurrentUser();
   }
-} 
+}

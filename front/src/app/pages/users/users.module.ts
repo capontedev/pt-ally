@@ -7,22 +7,14 @@ import { TableComponent } from './components/table/table.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: UsersComponent
-    }
+  {
+    path: '',
+    component: UsersComponent,
+  },
 ];
 
 @NgModule({
-    declarations: [
-        UsersComponent,
-        PaginationComponent,
-        TableComponent,
-        ToolbarComponent
-    ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes)
-    ]
+  declarations: [UsersComponent, PaginationComponent, TableComponent, ToolbarComponent],
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class UsersModule { } 
+export class UsersModule {}

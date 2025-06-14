@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-weather',
   standalone: false,
   templateUrl: './weather.component.html',
-  styleUrl: './weather.component.scss'
+  styleUrl: './weather.component.scss',
 })
 export class WeatherComponent {
   private subscription: Subscription;
@@ -14,8 +14,8 @@ export class WeatherComponent {
   constructor(private weatherService: WeatherService) {
     this.subscription = this.weatherService.weather$.subscribe({
       error: () => {
-        alert('Error al obtener el clima')
-      }
+        alert('Error al obtener el clima');
+      },
     });
   }
 

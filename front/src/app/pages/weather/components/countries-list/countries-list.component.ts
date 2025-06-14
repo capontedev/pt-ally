@@ -12,7 +12,7 @@ interface Country {
   selector: 'app-countries-list',
   standalone: false,
   templateUrl: './countries-list.component.html',
-  styleUrl: './countries-list.component.scss'
+  styleUrl: './countries-list.component.scss',
 })
 export class CountriesListComponent implements AfterViewInit {
   selectedCountry: Country | null = null;
@@ -22,20 +22,20 @@ export class CountriesListComponent implements AfterViewInit {
       code: 'MX',
       codeWeather: 'Mexico',
       name: 'México',
-      flag: 'https://flagcdn.com/w40/mx.png'
+      flag: 'https://flagcdn.com/w40/mx.png',
     },
     {
       code: 'VE',
       codeWeather: 'Venezuela',
       name: 'Venezuela',
-      flag: 'https://flagcdn.com/w40/ve.png'
+      flag: 'https://flagcdn.com/w40/ve.png',
     },
     {
       code: 'PE',
       codeWeather: 'Peru',
       name: 'Perú',
-      flag: 'https://flagcdn.com/w40/pe.png'
-    }
+      flag: 'https://flagcdn.com/w40/pe.png',
+    },
   ];
 
   constructor(private weatherService: WeatherService) {}
@@ -45,9 +45,9 @@ export class CountriesListComponent implements AfterViewInit {
       this.onSelectCountry(this.countries[0]);
     });
   }
-  
+
   onSelectCountry(country: Country): void {
     this.selectedCountry = country;
-    this.weatherService.searchWeather(country.codeWeather)
+    this.weatherService.searchWeather(country.codeWeather);
   }
 }

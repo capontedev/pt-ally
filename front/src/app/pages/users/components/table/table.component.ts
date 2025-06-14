@@ -5,7 +5,7 @@ import { User } from '../../../../interfaces/user.interface';
   selector: 'app-table',
   standalone: false,
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrl: './table.component.scss',
 })
 export class TableComponent {
   @Input() users: User[] = [];

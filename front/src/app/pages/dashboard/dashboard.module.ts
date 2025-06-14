@@ -5,35 +5,29 @@ import { DashboardComponent } from './dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 const routes: Routes = [
-    {
+  {
+    path: '',
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'weather',
+        loadChildren: () => import('../weather/weather.module').then(m => m.WeatherModule),
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('../users/users.module').then(m => m.UsersModule),
+      },
+      {
         path: '',
-        component: DashboardComponent,
-        children: [
-            {
-                path: 'weather',
-                loadChildren: () => import('../weather/weather.module').then(m => m.WeatherModule)
-            },
-            {
-                path: 'users',
-                loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
-            },
-            {
-                path: '',
-                redirectTo: 'weather',
-                pathMatch: 'full'
-            }
-        ]
-    }
+        redirectTo: 'weather',
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    declarations: [
-        SidebarComponent,
-        DashboardComponent
-    ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes)
-    ]
+  declarations: [SidebarComponent, DashboardComponent],
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class DashboardModule { } 
+export class DashboardModule {}

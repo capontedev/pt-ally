@@ -4,7 +4,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   selector: 'app-toolbar',
   standalone: false,
   templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.scss'
+  styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent {
   @Output() search = new EventEmitter<string>();
@@ -15,6 +15,6 @@ export class ToolbarComponent {
   }
 
   alertTodo() {
-    alert('No desarrollado')
+    alert('No desarrollado');
   }
 }

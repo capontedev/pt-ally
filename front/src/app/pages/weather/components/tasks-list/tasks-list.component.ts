@@ -9,25 +9,25 @@ import { User } from '../../../../interfaces/user.interface';
   selector: 'app-tasks-list',
   standalone: false,
   templateUrl: './tasks-list.component.html',
-  styleUrl: './tasks-list.component.scss'
+  styleUrl: './tasks-list.component.scss',
 })
 export class TasksListComponent implements OnDestroy, AfterViewInit {
   private subscription?: Subscription;
   taskList: Task[] = [];
-  currentUser?: User | null
+  currentUser?: User | null;
 
   constructor(
     private taskService: TaskService,
-    private authService: AuthService) {
-  }
+    private authService: AuthService,
+  ) {}
 
   ngAfterViewInit(): void {
     this.currentUser = this.authService.getCurrentUser();
 
     this.subscription = this.taskService.getTasks(this.currentUser?.id).subscribe({
-      next: (data) => {
-        this.taskList = data 
-      }
+      next: data => {
+        this.taskList = data;
+      },
     });
   }
 

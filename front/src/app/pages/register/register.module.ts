@@ -5,20 +5,14 @@ import { RegisterComponent } from './register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: RegisterComponent
-    }
+  {
+    path: '',
+    component: RegisterComponent,
+  },
 ];
 
 @NgModule({
-    declarations: [
-        RegisterComponent
-    ],
-    imports: [
-        ReactiveFormsModule,
-        CommonModule,
-        RouterModule.forChild(routes)
-    ]
+  declarations: [RegisterComponent],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule.forChild(routes)],
 })
-export class RegisterModule { } 
+export class RegisterModule {}

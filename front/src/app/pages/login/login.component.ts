@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-login',
   standalone: false,
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -17,11 +17,11 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(125)]]
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(125)]],
     });
   }
 
@@ -35,14 +35,14 @@ export class LoginComponent {
         next: () => {
           this.router.navigate(['/dashboard/weather']);
         },
-        error: (error) => {
+        error: error => {
           this.isSubmitting = false;
           if (error.error?.message) {
             this.errors.general = error.error.message;
           } else {
             this.errors.general = 'Error al iniciar sesión';
           }
-        }
+        },
       });
     } else {
       this.validateForm();

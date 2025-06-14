@@ -2,5 +2,5 @@ export const environment = {
   production: true,
   apiUrl: 'http://localhost:3000',
   apiWeather: '0d4cdfadad2540d5b74193937251306',
-  baseUrlWeather: 'http://api.weatherapi.com/v1'
-}; 
+  baseUrlWeather: 'http://api.weatherapi.com/v1',
+};

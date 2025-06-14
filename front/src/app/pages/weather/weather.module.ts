@@ -10,25 +10,22 @@ import { TimezonesListComponent } from './components/timezones-list/timezones-li
 import { WeatherCardComponent } from './components/weather-card/weather-card.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: WeatherComponent
-    }
+  {
+    path: '',
+    component: WeatherComponent,
+  },
 ];
 
 @NgModule({
-    declarations: [
-        ClockCardComponent,
-        CountriesListComponent,
-        CountryInfoComponent,
-        TasksListComponent,
-        TimezonesListComponent,
-        WeatherCardComponent,
-        WeatherComponent
-    ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes)
-    ]
+  declarations: [
+    ClockCardComponent,
+    CountriesListComponent,
+    CountryInfoComponent,
+    TasksListComponent,
+    TimezonesListComponent,
+    WeatherCardComponent,
+    WeatherComponent,
+  ],
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class WeatherModule { } 
+export class WeatherModule {}

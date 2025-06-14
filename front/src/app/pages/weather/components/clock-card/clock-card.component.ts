@@ -7,7 +7,7 @@ import { WeatherService } from '../../../../services/weather.service';
   selector: 'app-clock-card',
   standalone: false,
   templateUrl: './clock-card.component.html',
-  styleUrl: './clock-card.component.scss'
+  styleUrl: './clock-card.component.scss',
 })
 export class ClockCardComponent implements OnDestroy {
   private subscription: Subscription;
@@ -15,15 +15,15 @@ export class ClockCardComponent implements OnDestroy {
 
   constructor(private weatherService: WeatherService) {
     this.subscription = this.weatherService.timezone$.subscribe({
-      next: (data) => {
+      next: data => {
         if (data) {
           this.timezone = {
             tzId: data.tzId,
             name: data.name,
             localtime: data.localtime,
-          }
+          };
         }
-      }
+      },
     });
   }
 
