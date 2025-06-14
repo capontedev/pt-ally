@@ -9,11 +9,11 @@ import { TasksModule } from './tasks/tasks.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'sql.freedb.tech',
       port: 3306,
-      username: 'root',
-      password: '123456',
-      database: 'ally',
+      username: 'freedb_test-ally',
+      password: 'Vh7VsVt6$2YbYA&',
+      database: 'freedb_test-ally',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: false,
     }),
