@@ -11,13 +11,12 @@ export class TasksService {
   ) {}
 
   findAll(userId?: number): Promise<Task[]> {
-    const queryBuilder = this.tasksRepository.createQueryBuilder('task')
+    const queryBuilder = this.tasksRepository
+      .createQueryBuilder('task')
       .leftJoinAndSelect('task.user', 'user');
 
     queryBuilder.where('task.user_id = :userId', { userId });
 
-    return queryBuilder
-      .orderBy('task.create_at', 'DESC')
-      .getMany();
+    return queryBuilder.orderBy('task.create_at', 'DESC').getMany();
   }
 }

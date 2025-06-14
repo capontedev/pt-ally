@@ -15,7 +15,7 @@ import { TasksModule } from './tasks/tasks.module';
       password: '123456',
       database: 'ally',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: false
+      synchronize: false,
     }),
     UsersModule,
     TasksModule,
