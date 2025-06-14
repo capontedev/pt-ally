@@ -15,11 +15,11 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Dumping database structure for freedb_test-ally
-CREATE DATABASE IF NOT EXISTS `freedb_test-ally` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `freedb_test-ally`;
+-- Dumping database structure for ally
+CREATE DATABASE IF NOT EXISTS `ally` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `ally`;
 
--- Dumping structure for table freedb_test-ally.task
+-- Dumping structure for table ally.task
 CREATE TABLE IF NOT EXISTS `task` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   CONSTRAINT `task_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table freedb_test-ally.task: ~0 rows (approximately)
+-- Dumping data for table ally.task: ~0 rows (approximately)
 INSERT INTO `task` (`id`, `user_id`, `description`, `done`, `create_at`, `done_at`) VALUES
 	(4, 3, 'Configurar entorno de desarrollo', 1, '2025-06-14 01:30:58', '2025-06-14 01:30:58'),
 	(5, 3, 'Diseñar interfaz de usuario', 0, '2025-06-14 01:30:58', NULL),
@@ -115,7 +115,7 @@ INSERT INTO `task` (`id`, `user_id`, `description`, `done`, `create_at`, `done_a
 	(82, 22, 'Mejorar uso de caché en servidor', 1, '2025-06-14 01:30:58', '2025-06-14 01:30:58'),
 	(83, 22, 'Documentar guía de instalación en servidores locales', 0, '2025-06-14 01:30:58', NULL);
 
--- Dumping structure for table freedb_test-ally.user
+-- Dumping structure for table ally.user
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(125) DEFAULT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table freedb_test-ally.user: ~0 rows (approximately)
+-- Dumping data for table ally.user: ~0 rows (approximately)
 INSERT INTO `user` (`id`, `email`, `full_name`, `password`, `create_at`, `last_login_at`) VALUES
 	(3, 'juan.perez@example.com', 'Juan Pérez', '123456', '2025-06-14 01:28:19', '2025-06-13 21:36:03'),
 	(4, 'maria.gomez@example.com', 'María Gómez', '123456', '2025-06-14 01:28:19', NULL),
