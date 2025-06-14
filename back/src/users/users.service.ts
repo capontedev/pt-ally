@@ -52,30 +52,39 @@ export class UsersService {
   }
 
   async findAll(paginationQuery: PaginationQueryDto) {
-    const { page = 1, limit = 10 } = paginationQuery;
+    const { page = 1, limit = 10, search } = paginationQuery;
     const skip = (page - 1) * limit;
-
-    const [users, total] = await this.usersRepository.findAndCount({
-      skip,
-      take: limit,
-      order: {
-        create_at: 'DESC'
-      }
-    });
-
+  
+    const queryBuilder = this.usersRepository.createQueryBuilder('user');
+  
+    if (search) {
+      queryBuilder.where(
+        '(user.full_name LIKE :search OR user.email LIKE :search)',
+        { search: `%${search}%` }
+      );
+    }
+  
+    const [users, total] = await queryBuilder
+      .skip(skip)
+      .take(limit)
+      .orderBy('user.create_at', 'DESC')
+      .getManyAndCount();
+  
     const transformedUsers = users.map(user => 
       plainToInstance(User, user, { 
         excludeExtraneousValues: true 
       })
     );
-
+  
     return {
       data: transformedUsers,
       meta: {
         total,
         page,
         limit,
-        totalPages: Math.ceil(total / limit)
+        totalPages: Math.ceil(total / limit),
+        hasNextPage: page < Math.ceil(total / limit),
+        hasPreviousPage: page > 1
       }
     };
   }

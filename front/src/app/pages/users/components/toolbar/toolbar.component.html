@@ -21,7 +21,11 @@
     </div>
     <div class="toolbar-filter">
         <label htmlFor="filter">Filtrar:</label>
-        <input type="text" id="filter" placeholder="Buscar..."
+        <input 
+            type="text" 
+            placeholder="Buscar usuarios..." 
+            (input)="onSearch($event)"
+            class="search-input"
         />
     </div>
 </div>

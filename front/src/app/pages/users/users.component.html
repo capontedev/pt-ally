@@ -3,18 +3,16 @@
         <h1>Usuarios</h1>
     </div>
     <div class="users-content">
-        <!--<UsersToolbar onFilterChange={handleFilterChange} filterValue={filterText} />
-      <UsersTable users={currentRecords} loading={loading} />
-      <UsersPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        totalRecords={totalRecords}
-        recordsPerPage={recordsPerPage}
-        onPageChange={handlePageChange}
-        startRecord={indexOfFirstRecord + 1}
-        endRecord={Math.min(indexOfLastRecord, totalRecords)}-->
-        <app-toolbar />
-        <app-table />
-        <app-pagination />
+        <app-toolbar (search)="onSearch($event)" />
+        <app-table [users]="users" />
+        <app-pagination
+            [currentPage]="currentPage"
+            [totalPages]="totalPages"
+            [totalRecords]="totalRecords"
+            [recordsPerPage]="recordsPerPage"
+            [startRecord]="startRecord"
+            [endRecord]="endRecord"
+            (pageChange)="onPageChange($event)"
+        />
     </div>
 </div>

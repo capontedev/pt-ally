@@ -9,27 +9,22 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td colspan=4 class="no-records">
-                    No se encontraron registros
-                </td>
-            </tr>
-            <!--{users.length === 0 ? (
-            <tr>
-                <td colSpan={4} class="no-records">
-                    No se encontraron registros
-                </td>
-            </tr>
-            ) : (
-            users.map((user) => (
-            <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.registrationDate}</td>
-                <td>{user.lastLogin}</td>
-            </tr>
-            ))
-        )}-->
+            @if (users.length === 0) {
+                <tr>
+                    <td colspan="6" class="no-data">
+                        No hay usuarios registrados
+                    </td>
+                </tr>
+            } @else {
+                @for (user of users; track user.id) {
+                    <tr>
+                        <td>{{ user.full_name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.create_at | date:'yyyy-MM-dd HH:mm:ss a' }}</td>
+                        <td>{{ user.last_login_at | date:'yyyy-MM-dd HH:mm:ss a' }}</td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
 </div>

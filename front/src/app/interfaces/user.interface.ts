@@ -8,12 +8,15 @@ export interface User {
 
 export interface PaginatedResponse<T> {
     data: T[];
-    meta: {
-        total: number;
-        page: number;
-        limit: number;
-        totalPages: number;
-    };
+    meta: PaginatedMeta;
+}
+
+export interface PaginatedMeta {
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+    recordPerPage?: number;
 }
 
 export interface LoginRequest {
@@ -26,3 +29,4 @@ export interface CreateUserRequest {
     email: string;
     password: string;
 } 
+ 
